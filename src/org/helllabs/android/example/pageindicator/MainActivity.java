@@ -1,5 +1,6 @@
 package org.helllabs.android.example.pageindicator;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,14 +11,14 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.viewpagerindicator.PageIndicator;
-import com.viewpagerindicator.TabPageIndicator;
+import com.viewpagerindicator.TitlePageIndicator;
 
 
 public class MainActivity extends SherlockFragmentActivity {
 
 	private static final String[] titles = new String[] { "Fragment 1", "Fragment 2", "Fragment 3", "Fragment 4" };
 	private static final Class<?>[] fragments = new Class[] {
-		FirstFragment.class, SecondFragment.class, SecondFragment.class, SecondFragment.class
+		FirstFragment.class, SecondFragment.class, FirstFragment.class, SecondFragment.class
 	}; 
 
 	@Override
@@ -30,7 +31,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		pager.setAdapter(new TestAdapter(getSupportFragmentManager()));
 
 		// Bind the title indicator to the adapter
-		PageIndicator indicator = (TabPageIndicator)findViewById(R.id.titles);
+		PageIndicator indicator = (TitlePageIndicator)findViewById(R.id.titles);
 		indicator.setViewPager(pager);
 	}
 
@@ -54,15 +55,13 @@ public class MainActivity extends SherlockFragmentActivity {
 
 		@Override
 		public Fragment getItem(int position) {
-			return new FirstFragment();
-			/*Fragment fragment = null;
+			Fragment fragment = null;
 			try {
-				//fragment = (Fragment)fragments[position].newInstance();
-				fragment = new SecondFragment();
+				fragment = (Fragment)fragments[position].newInstance();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			return fragment;*/    
+			return fragment;    
 		}
 
 		@Override
@@ -70,9 +69,10 @@ public class MainActivity extends SherlockFragmentActivity {
 			return count;
 		}
 
+		@SuppressLint("DefaultLocale")
 		@Override
 		public CharSequence getPageTitle(int position) {
-			return titles[position];
+			return titles[position].toUpperCase();
 		}
 	}
 }

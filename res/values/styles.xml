@@ -2,19 +2,20 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- This is our main ActionBarSherlock theme -->
-    <style name="Theme.Styled" parent="Theme.Sherlock.Light">
+    <style name="Theme.Custom" parent="Theme.Sherlock.Light">
 
     </style>
     
     <!-- This is our ViewPagerIndicator theme. We inherit from the ABS theme -->
-    <style name="Theme.VPI" parent="Theme.Styled">
-        <item name="vpiTabPageIndicatorStyle">@style/CustomTabPageIndicator</item>
+    <style name="Theme.VPI" parent="Theme.Custom">
+        <item name="vpiTitlePageIndicatorStyle">@style/CustomTitlePageIndicator</item>
     </style>
 
     <!-- "Implementation" of VPI theme. We just set the text size and color. -->
-    <style name="CustomTabPageIndicator" parent="Widget.TabPageIndicator">
-        <!-- <item name="android:textSize">50dip</item> -->
-        <item name="android:textColor">#ff000000</item>
+    <style name="CustomTitlePageIndicator" parent="Widget.TabPageIndicator">
+        <item name="android:textColor">#aa000000</item>
+        <item name="selectedColor">#ff000000</item>
+        <item name="selectedBold">true</item>
     </style>
 
 </resources>
